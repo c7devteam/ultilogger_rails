@@ -3,8 +3,13 @@ module Api::V1
 		skip_before_action :restrict_access
 
 		def index
-			@applications = Application.all
-			render json: @applications
+			@applications = Application.page params[:page]
+			render :json => {
+				:current_page => @applications.current_page,
+				:per_page => @applications.default_per_page,
+				:total_pages => @applications.total_pages,
+				:request_logs => @applications
+			}			
 		end
 
 		def create
