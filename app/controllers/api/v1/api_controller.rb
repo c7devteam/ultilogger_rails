@@ -5,7 +5,7 @@ module Api::V1
 		private
 			def restrict_access
 					authenticate_or_request_with_http_token do |token, options|
-						@current_application = Application.where(token: token).first
+						@current_application = Application.where(token: token, active: true).first
 					end
 			end
 	end
