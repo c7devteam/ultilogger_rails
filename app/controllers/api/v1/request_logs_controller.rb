@@ -9,6 +9,7 @@ module Api::V1
 
     def create
       @current_application.request_logs.create(reqeust_log_params)
+			render json: { success: true, message: 'created request log' }
     end
 
     private
