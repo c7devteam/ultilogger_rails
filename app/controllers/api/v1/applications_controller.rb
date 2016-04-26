@@ -2,14 +2,8 @@ module Api::V1
 	class ApplicationsController < ApiController
 		skip_before_action :restrict_access
 
-		def index
-			@applications = Application.page params[:page]
-			render :json => {
-				:current_page => @applications.current_page,
-				:per_page => @applications.default_per_page,
-				:total_pages => @applications.total_pages,
-				:request_logs => @applications
-			}			
+		def index			
+			base_pagination(Application.page params[:page])
 		end
 
 		def create
