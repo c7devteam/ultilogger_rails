@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426085638) do
+ActiveRecord::Schema.define(version: 20160426151641) do
 
   create_table "applications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -35,5 +35,25 @@ ActiveRecord::Schema.define(version: 20160426085638) do
 
   add_index "request_logs", ["application_id"], name: "index_request_logs_on_application_id", using: :btree
 
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "text_log_id"
+    t.string   "text"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "tags", ["text_log_id"], name: "index_tags_on_text_log_id", using: :btree
+
+  create_table "text_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "application_id"
+    t.text     "text",           limit: 65535
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "text_logs", ["application_id"], name: "index_text_logs_on_application_id", using: :btree
+
   add_foreign_key "request_logs", "applications"
+  add_foreign_key "tags", "text_logs"
+  add_foreign_key "text_logs", "applications"
 end
