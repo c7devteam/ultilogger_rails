@@ -9,11 +9,14 @@ module Api::V1
 					end
 			end
 			def base_pagination(model)
-				render :json => {
+				render json: model, meta:pagination_dict(model)
+			end
+
+			def pagination_dict(model)
+				{
 					:current_page => model.current_page,
 					:per_page => model.default_per_page,
 					:total_pages => model.total_pages,
-					:data => model
 				}
 			end
 	end

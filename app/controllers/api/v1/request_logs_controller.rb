@@ -8,13 +8,9 @@ module Api::V1
     end
 
     def create
-      @current_application.request_logs.create(reqeust_log_params)
+      @current_application.request_logs.create(user_id: params[:user_id], action: params[:action], controller: params[:the_controller], params: params[:params], ip_address: request.ip)
 			render json: { success: true, message: 'created request log' }
     end
 
-    private
-      def reqeust_log_params
-        params.require(:request_log).permit(:user_id, :action, :controller, :params)
-      end
   end
 end
