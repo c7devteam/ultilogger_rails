@@ -8,12 +8,8 @@ module Api::V1
     end
 
     def create
-      @current_application.request_logs.create(request_log_params)
+      @current_application.request_logs.create(user_id: params[:user_id], action: params[:action], controller: params[:the_controller], params: params[:params], ip_address: request.ip)
     end
 
-    private
-      def request_log_params
-        params.require(:request_log).permit(:user_id, :action, :controller, :params)
-      end
   end
 end

@@ -6,7 +6,7 @@ class CreateRequestLogs < ActiveRecord::Migration[5.0]
       t.string :action
       t.string :controller
       t.text :params
-
+      t.string :ip_address
       t.timestamps
     end
   end

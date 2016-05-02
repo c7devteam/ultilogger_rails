@@ -19,9 +19,8 @@ ActiveRecord::Schema.define(version: 20160426151641) do
     t.boolean  "active",     default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["name"], name: "index_applications_on_name", unique: true, using: :btree
   end
-
-  add_index "applications", ["name"], name: "index_applications_on_name", unique: true, using: :btree
 
   create_table "request_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "application_id"
@@ -29,29 +28,28 @@ ActiveRecord::Schema.define(version: 20160426151641) do
     t.string   "action"
     t.string   "controller"
     t.text     "params",         limit: 65535
+    t.string   "ip_address"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.index ["application_id"], name: "index_request_logs_on_application_id", using: :btree
   end
-
-  add_index "request_logs", ["application_id"], name: "index_request_logs_on_application_id", using: :btree
 
   create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "text_log_id"
     t.string   "text"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["text_log_id"], name: "index_tags_on_text_log_id", using: :btree
   end
-
-  add_index "tags", ["text_log_id"], name: "index_tags_on_text_log_id", using: :btree
 
   create_table "text_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "application_id"
     t.text     "text",           limit: 65535
+    t.string   "ip_address"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.index ["application_id"], name: "index_text_logs_on_application_id", using: :btree
   end
-
-  add_index "text_logs", ["application_id"], name: "index_text_logs_on_application_id", using: :btree
 
   add_foreign_key "request_logs", "applications"
   add_foreign_key "tags", "text_logs"
