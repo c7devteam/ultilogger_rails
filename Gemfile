@@ -13,8 +13,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'capistrano-figaro'
   gem 'capistrano', '~> 3.5'
+  gem 'capistrano-figaro-yml', '~> 1.0', '>= 1.0.2'
   gem 'capistrano-rails', '~> 1.1', '>= 1.1.6'
   gem 'capistrano-rbenv', '~> 2.0', '>= 2.0.4'
   gem 'listen', '~> 3.0.5'
