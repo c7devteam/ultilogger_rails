@@ -10,7 +10,6 @@ set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.3.0'
 
 require 'capistrano/bundler'
-require 'capistrano/bundler'
 require 'capistrano/rails/migrations'
 
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
