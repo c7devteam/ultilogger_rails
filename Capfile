@@ -11,6 +11,5 @@ set :rbenv_ruby, '2.3.0'
 
 require 'capistrano/bundler'
 require 'capistrano/rails'
-require 'capistrano/passenger'
 
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
