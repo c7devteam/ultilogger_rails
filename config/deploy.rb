@@ -4,6 +4,8 @@ lock '3.5.0'
 set :application, 'ultilogger_rails'
 set :repo_url, 'git@github.com:c7devteam/ultilogger_rails.git'
 
+set :passenger_restart_with_touch, true
+
 
 set :deploy_to, '/home/ubuntu/ultilogger_rails'
 
