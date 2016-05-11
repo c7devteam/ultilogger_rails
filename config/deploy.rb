@@ -9,7 +9,7 @@ set :passenger_restart_with_touch, true
 
 set :deploy_to, '/home/ubuntu/ultilogger_rails'
 
-set :linked_files, %w{config/database.yml config/secrets.yml config/application.yml}
+set :linked_files, %w{config/database.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 
